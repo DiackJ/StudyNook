@@ -3,4 +3,4 @@ StudyNook is designed to be an "all-in-one" study platform for students. Users c
 
 
 **Figma UI design (Jessica)**
-![Screenshot](https://github.com/user-attachments/assets/0ce9e652-3514-4007-8c9f-955ab6002ccf)
+![Screenshot](https://github.com/user-attachments/assets/fa79241a-9152-4e2c-9140-1fc0715a948d)
