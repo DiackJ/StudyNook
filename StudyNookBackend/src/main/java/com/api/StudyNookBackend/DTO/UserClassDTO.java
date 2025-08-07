@@ -1,9 +1,9 @@
 package com.api.StudyNookBackend.DTO;
 
-public class NoteTagDTO {
+public class UserClassDTO {
     private String name;
 
-    public NoteTagDTO(){}
+    public UserClassDTO(){}
 
     public String getName(){return this.name;}
 }

@@ -13,7 +13,7 @@ public class Notebook {
     private long id;
     //bc one class may have many notebooks
     @ManyToOne
-    @JoinColumn(name = "class_id")
+    @JoinColumn(name = "user_class_id")
     private UserClass userClass;
     //bc one notebook may have many notes
     @OneToMany(mappedBy = "notebook")

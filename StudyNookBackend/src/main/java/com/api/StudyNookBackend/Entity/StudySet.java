@@ -13,7 +13,7 @@ public class StudySet {
     private long id;
     //bc one class can have many study sets
     @ManyToOne
-    @JoinColumn(name = "class_id")
+    @JoinColumn(name = "user_class_id")
     private UserClass userClass; //please use "userClass" since "class" is a Java keyword. it WILL cause errors!
     //bc one user will have many study sets
     @ManyToOne
