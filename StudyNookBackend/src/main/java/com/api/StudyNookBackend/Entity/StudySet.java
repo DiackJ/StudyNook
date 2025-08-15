@@ -13,12 +13,12 @@ public class StudySet {
     private long id;
     //bc one class can have many study sets
     @ManyToOne
-    @JoinColumn(name = "user_class_id")
+    @JoinColumn(name = "user_class")
     private UserClass userClass; //please use "userClass" since "class" is a Java keyword. it WILL cause errors!
     //bc one user will have many study sets
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User createdByUser;
+    private User userId;
     //bc one study set will have many flashcards
     @OneToMany(mappedBy = "study_set")
     private List<Flashcard> allFlashcards;
@@ -41,8 +41,8 @@ public class StudySet {
     public UserClass getUserClass(){return this.userClass;}
     public void setUserClass(UserClass userClass){this.userClass = userClass;}
 
-    public User getCreatedByUser(){return this.createdByUser;}
-    public void setCreatedByUser(User user){this.createdByUser = user;}
+    public User getUserId(){return this.userId;}
+    public void setUserId(User user){this.userId = user;}
 
     public List<StudyTag> getAllStudyTags() {return allStudyTags;}
     public void setAllStudyTags(List<StudyTag> studyTags){this.allStudyTags = studyTags;}

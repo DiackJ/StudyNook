@@ -1,9 +1,8 @@
 package com.api.StudyNookBackend.Entity;
 
 import jakarta.persistence.*;
-
+import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -14,12 +13,12 @@ public class User {
     private String name;
     private String email;
     private String password;
-    private Date createdAt;
-    private Date updatedAt;
+    private Timestamp createdAt;
+    private Timestamp updatedAt;
     //bc one user will have one global tag container
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_tag_id")
-    private UserTag allUserTags;
+    @JoinColumn(name = "user_tag_id", referencedColumnName = "id")
+    private UserTag userTagId;
     //bc one user will have many classes, calendar events, flashcards, boards, study sets, notebooks, notes, and tasks
     @OneToMany(mappedBy = "user")
     private List<UserClass> allUserClasses;
@@ -62,14 +61,14 @@ public class User {
     public String getPassword(){return this.password;}
     public void setPassword(String password){this.password = password;}
 
-    public Date getCreatedAt(){return this.createdAt;}
-    public void setCreatedAt(Date createdAt){this.createdAt = createdAt;}
+    public Timestamp getCreatedAt(){return this.createdAt;}
+    public void setCreatedAt(Timestamp createdAt){this.createdAt = createdAt;}
 
-    public Date getUpdatedAt(){return this.updatedAt;}
-    public void setUpdatedAt(Date updatedAt){this.updatedAt = updatedAt;}
+    public Timestamp getUpdatedAt(){return this.updatedAt;}
+    public void setUpdatedAt(Timestamp updatedAt){this.updatedAt = updatedAt;}
 
-    public UserTag getAllUserTags(){return this.allUserTags;}
-    public void setAllUserTags(UserTag tags){this.allUserTags = tags;}
+    public UserTag getUserTagId(){return this.userTagId;}
+    public void setUserTagId(UserTag tags){this.userTagId = tags;}
 
     public List<UserClass> getAllUserClasses(){return this.allUserClasses;}
     public void setAllUserClasses(List<UserClass> classes){this.allUserClasses = classes;}

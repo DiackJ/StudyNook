@@ -1,0 +1,8 @@
+CREATE TABLE study_tag(
+id BIGINT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+user_tag_id BIGINT,
+study_set_id BIGINT,
+name VARCHAR(50),
+FOREIGN KEY (user_tag_id) REFERENCES user_tag (id) ON DELETE CASCADE,
+FOREIGN KEY (study_set_id) REFERENCES study_set (id) ON DELETE CASCADE
+);

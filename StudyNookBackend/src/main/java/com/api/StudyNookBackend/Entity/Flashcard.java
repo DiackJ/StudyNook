@@ -12,11 +12,11 @@ public class Flashcard {
     //bc many flashcards belong to one study set
     @ManyToOne
     @JoinColumn(name = "study_set_id")
-    private StudySet studySet;
+    private StudySet studySetId;
     //bc many flashcards belong to one user
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User createdByUser;
+    private User userId;
     private String term;
     private String definition;
     private boolean isCorrect;
@@ -28,11 +28,11 @@ public class Flashcard {
     public long getId(){return this.id;}
     public void setId(long id){this.id = id;}
 
-    public StudySet getStudySet(){return this.studySet;}
-    public void setStudySet(StudySet studySet){this.studySet = studySet;}
+    public StudySet getStudySetId(){return this.studySetId;}
+    public void setStudySetId(StudySet studySetId){this.studySetId = studySetId;}
 
-    public User getCreatedByUser(){return this.createdByUser;}
-    public void setCreatedByUser(User user){this.createdByUser = user;}
+    public User getUserId(){return this.userId;}
+    public void setUserId(User user){this.userId = user;}
 
     public String getTerm(){return this.term;}
     public void setTerm(String term){this.term = term;}

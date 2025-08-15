@@ -2,8 +2,8 @@ package com.api.StudyNookBackend.Entity;
 
 import jakarta.persistence.*;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -14,7 +14,7 @@ public class UserClass {
     //bc many classes belong to one user
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User createdByUser;
+    private User userId;
     //bc one class will have many boards, study sets and notebooks
     @OneToMany(mappedBy = "user_class")
     private List<Board> allBoards;
@@ -23,8 +23,8 @@ public class UserClass {
     @OneToMany(mappedBy = "user_class")
     private List<Notebook> allNotebooks;
     private String name;
-    private Date createdAt;
-    private Date updatedAt;
+    private Timestamp createdAt;
+    private Timestamp updatedAt;
 
     public UserClass(){
         this.allBoards = new ArrayList<>();
@@ -35,8 +35,8 @@ public class UserClass {
     public long getId(){return this.id;}
     public void setId(long id){this.id = id;}
 
-    public User getCreatedByUser(){return this.createdByUser;}
-    public void setCreatedByUser(User user){this.createdByUser = user;}
+    public User getUserId(){return this.userId;}
+    public void setUserId(User user){this.userId = user;}
 
     public List<Board> getAllBoards(){return this.allBoards;}
     public void setAllBoards(List<Board> boards){this.allBoards = boards;}
@@ -50,9 +50,9 @@ public class UserClass {
     public String getName(){return this.name;}
     public void setName(String name){this.name = name;}
 
-    public Date getCreatedAt(){return this.createdAt;}
-    public void setCreatedAt(Date date){this.createdAt = date;}
+    public Timestamp getCreatedAt(){return this.createdAt;}
+    public void setCreatedAt(Timestamp date){this.createdAt = date;}
 
-    public Date getUpdatedAt(){return this.updatedAt;}
-    public void setUpdatedAt(Date date){this.updatedAt = date;}
+    public Timestamp getUpdatedAt(){return this.updatedAt;}
+    public void setUpdatedAt(Timestamp date){this.updatedAt = date;}
 }
