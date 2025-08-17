@@ -1,7 +1,10 @@
 package com.api.StudyNookBackend.Entity;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -23,8 +26,10 @@ public class Note {
     @OneToMany(mappedBy = "note")
     private List<NoteTag> allNoteTags;
     private String title;
-    private Date createdAt;
-    private Date updatedAt;
+    @CreationTimestamp
+    private LocalDateTime createdAt;
+    @UpdateTimestamp
+    private LocalDateTime updatedAt;
     private String content;
 
     //no args constructor but need to define type of list
@@ -47,11 +52,11 @@ public class Note {
     public String getTitle(){return this.title;}
     public void setTitle(String title){this.title = title;}
 
-    public Date getCreatedAt(){return this.createdAt;}
-    public void setCreatedAt(Date date){this.createdAt = date;}
+    public LocalDateTime getCreatedAt(){return this.createdAt;}
+    public void setCreatedAt(LocalDateTime date){this.createdAt = date;}
 
-    public Date getUpdatedAt(){return this.updatedAt;}
-    public void setUpdatedAt(Date date){this.updatedAt = date;}
+    public LocalDateTime getUpdatedAt(){return this.updatedAt;}
+    public void setUpdatedAt(LocalDateTime date){this.updatedAt = date;}
 
     public String getContent(){return this.content;}
     public void setContent(String content){this.content = content;}

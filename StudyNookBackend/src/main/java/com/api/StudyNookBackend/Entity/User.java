@@ -1,7 +1,13 @@
 package com.api.StudyNookBackend.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.cglib.core.Local;
+
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,9 +18,12 @@ public class User {
     private long id;
     private String name;
     private String email;
+    @JsonIgnore
     private String password;
-    private Timestamp createdAt;
-    private Timestamp updatedAt;
+    @CreationTimestamp
+    private LocalDateTime createdAt;
+    @UpdateTimestamp
+    private LocalDateTime updatedAt;
     //bc one user will have one global tag container
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_tag_id", referencedColumnName = "id")
@@ -61,11 +70,11 @@ public class User {
     public String getPassword(){return this.password;}
     public void setPassword(String password){this.password = password;}
 
-    public Timestamp getCreatedAt(){return this.createdAt;}
-    public void setCreatedAt(Timestamp createdAt){this.createdAt = createdAt;}
+    public LocalDateTime getCreatedAt(){return this.createdAt;}
+    public void setCreatedAt(LocalDateTime createdAt){this.createdAt = createdAt;}
 
-    public Timestamp getUpdatedAt(){return this.updatedAt;}
-    public void setUpdatedAt(Timestamp updatedAt){this.updatedAt = updatedAt;}
+    public LocalDateTime getUpdatedAt(){return this.updatedAt;}
+    public void setUpdatedAt(LocalDateTime updatedAt){this.updatedAt = updatedAt;}
 
     public UserTag getUserTag(){return this.userTag;}
     public void setUserTag(UserTag tags){this.userTag = tags;}

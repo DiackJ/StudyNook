@@ -1,7 +1,10 @@
 package com.api.StudyNookBackend.Entity;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -23,8 +26,10 @@ public class Notebook {
     @JoinColumn(name = "user_id")
     private User user;
     private String title;
-    private Date createdAt;
-    private Date updatedAt;
+    @CreationTimestamp
+    private LocalDateTime createdAt;
+    @UpdateTimestamp
+    private LocalDateTime updatedAt;
 
     public Notebook(){
         this.allNotes = new ArrayList<>();
@@ -45,9 +50,9 @@ public class Notebook {
     public String getTitle(){return this.title;}
     public void setTitle(String title){this.title = title;}
 
-    public Date getCreatedAt(){return this.createdAt;}
-    public void setCreatedAt(Date createdAt){this.createdAt = createdAt;}
+    public LocalDateTime getCreatedAt(){return this.createdAt;}
+    public void setCreatedAt(LocalDateTime createdAt){this.createdAt = createdAt;}
 
-    public Date getUpdatedAt(){return this.updatedAt;}
-    public void setUpdatedAt(Date date){this.updatedAt = date;}
+    public LocalDateTime getUpdatedAt(){return this.updatedAt;}
+    public void setUpdatedAt(LocalDateTime date){this.updatedAt = date;}
 }

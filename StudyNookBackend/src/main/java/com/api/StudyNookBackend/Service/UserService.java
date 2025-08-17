@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.HashMap;
 
 //handles all the functionality for the user
@@ -24,10 +25,10 @@ public class UserService {
 
     //create a new user
     public User createNewUser(UserDTO userdto){
-        User existingUser = userRepository.findByEmail(userdto.getEmail()).orElseThrow(IllegalArgumentException::new);
-        if(userRepository.count() >= 1 && existingUser != null){
-            throw new RuntimeException("user already exists");
-        }
+//        User existingUser = userRepository.findByEmail(userdto.getEmail()).orElseThrow(IllegalArgumentException::new);
+//        if(userRepository.count() >= 1 && existingUser != null){
+//            throw new RuntimeException("user already exists");
+//        }
         User user = new User();
         user.setEmail(userdto.getEmail());
         user.setPassword(encoder.encode(userdto.getPassword()));

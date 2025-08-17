@@ -1,7 +1,10 @@
 package com.api.StudyNookBackend.Entity;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -20,8 +23,10 @@ public class Flashcard {
     private String term;
     private String definition;
     private boolean isCorrect;
-    private Date createdAt;
-    private Date updatedAt;
+    @CreationTimestamp
+    private LocalDateTime createdAt;
+    @UpdateTimestamp
+    private LocalDateTime updatedAt;
 
     public Flashcard(){}
 
@@ -43,9 +48,9 @@ public class Flashcard {
     public boolean getIsCorrect(){return this.isCorrect;}
     public void setIsCorrect(boolean correct){this.isCorrect = correct;}
 
-    public Date getCreatedAt(){return this.createdAt;}
-    public void setCreatedAt(Date date){this.createdAt = date;}
+    public LocalDateTime getCreatedAt(){return this.createdAt;}
+    public void setCreatedAt(LocalDateTime date){this.createdAt = date;}
 
-    public Date getUpdatedAt(){return this.updatedAt;}
-    public void setUpdatedAt(Date date){this.updatedAt = date;}
+    public LocalDateTime getUpdatedAt(){return this.updatedAt;}
+    public void setUpdatedAt(LocalDateTime date){this.updatedAt = date;}
 }

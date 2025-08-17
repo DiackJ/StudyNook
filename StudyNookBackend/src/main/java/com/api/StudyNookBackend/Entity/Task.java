@@ -1,7 +1,10 @@
 package com.api.StudyNookBackend.Entity;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -29,8 +32,10 @@ public class Task {
     private String title;
     private String description;
     private Date dueDate;
-    private Date createdAt;
-    private Date updatedAt;
+    @CreationTimestamp
+    private LocalDateTime createdAt;
+    @UpdateTimestamp
+    private LocalDateTime updatedAt;
 
 //no args constructor to create objects but need to define list type.
     public Task(){
@@ -49,8 +54,8 @@ public class Task {
     public User getUser(){return this.user;}
     public void setUser(User user){this.user = user;}
 
-    public Date getCreatedAt(){return this.createdAt;}
-    public void setCreatedAt(Date created){this.createdAt = created;}
+    public LocalDateTime getCreatedAt(){return this.createdAt;}
+    public void setCreatedAt(LocalDateTime created){this.createdAt = created;}
 
     public Date getDueDate(){return this.dueDate;}
     public void setDueDate(Date date){this.dueDate = date;}
@@ -64,6 +69,6 @@ public class Task {
     public List<TaskTag> getAllTaskTags(){return this.allTaskTags;}
     public void setAllTaskTags(List<TaskTag> taskTags){this.allTaskTags = taskTags;}
 
-    public Date getUpdatedAt(){return this.updatedAt;}
-    public void setUpdatedAt(Date date){this.updatedAt = date;}
+    public LocalDateTime getUpdatedAt(){return this.updatedAt;}
+    public void setUpdatedAt(LocalDateTime date){this.updatedAt = date;}
 }

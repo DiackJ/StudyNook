@@ -20,7 +20,7 @@ public class AuthController {
     private UserRepository userRepository;
     @Autowired
     private UserService userService;
-    private final Pattern pattern = Pattern.compile("^ [A-Za-z0-9+_.-]+@[A_Za-z0-9.-]+$");
+    private final Pattern pattern = Pattern.compile("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$");
 
     @PostMapping("/signup")
     public ResponseEntity<User> createNewUser(@RequestBody UserDTO dto){
