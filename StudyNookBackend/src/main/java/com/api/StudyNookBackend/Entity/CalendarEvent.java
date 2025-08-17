@@ -12,7 +12,7 @@ public class CalendarEvent {
     //bc many events belong to one user
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User userId;
+    private User user;
     private String title;
     private Date date;
     private String description;
@@ -22,8 +22,8 @@ public class CalendarEvent {
     public long getId(){return this.id;}
     public void setId(long id){this.id = id;}
 
-    public User getUserId(){return this.userId;}
-    public void setUserId(User user){this.userId = user;}
+    public User getUser(){return this.user;}
+    public void setUser(User user){this.user = user;}
 
     public String getTitle(){return this.title;}
     public void setTitle(String title){this.title = title;}

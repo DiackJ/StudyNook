@@ -10,11 +10,11 @@ public class NoteTag {
     //bc many note tags belong to one note
     @ManyToOne
     @JoinColumn(name = "note_id")
-    private Note noteId;
+    private Note note;
     //bc many note tags belong to one global user tag holder
     @ManyToOne
     @JoinColumn(name = "user_tag_id")
-    private UserTag userTagId;
+    private UserTag userTag;
     private String name;
 
     public NoteTag(){}
@@ -22,11 +22,11 @@ public class NoteTag {
     public long getId(){return this.id;}
     public void setId(long id){this.id = id;}
 
-    public Note getNoteId(){return this.noteId;}
-    public void setNoteId(Note noteId){this.noteId = noteId;}
+    public Note getNoteId(){return this.note;}
+    public void setNoteId(Note noteId){this.note = noteId;}
 
-    public UserTag getUserTagId(){return this.userTagId;}
-    public void setUserTagId(UserTag userTagId){this.userTagId = userTagId;}
+    public UserTag getUserTag(){return this.userTag;}
+    public void setUserTag(UserTag userTag){this.userTag = userTag;}
 
     public String getName(){return this.name;}
     public void setName(String name){this.name = name;}

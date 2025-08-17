@@ -14,15 +14,15 @@ public class Task {
     //bc one board will have many tasks
     @ManyToOne
     @JoinColumn(name = "board_id")
-    private Board boardId;
+    private Board board;
     //bc one category will have many tasks
     @ManyToOne
     @JoinColumn(name = "category_id")
-    private Category categoryId;
+    private Category category;
     //bc one user will have many tasks
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User userId;
+    private User user;
     //bc one task will have many task tags
     @OneToMany(mappedBy = "task")
     private List<TaskTag> allTaskTags;
@@ -40,14 +40,14 @@ public class Task {
     public long getId(){return this.id;}
     public void setId(long id){this.id = id;}
 
-    public Board getBoardId(){return this.boardId;}
-    public void setBoardId(Board boardId){this.boardId = boardId;}
+    public Board getBoardId(){return this.board;}
+    public void setBoardId(Board boardId){this.board = boardId;}
 
-    public Category getCategoryId(){return this.categoryId;}
-    public void setCategoryId(Category categoryId){this.categoryId = categoryId;}
+    public Category getCategory(){return this.category;}
+    public void setCategory(Category category){this.category = category;}
 
-    public User getUserId(){return this.userId;}
-    public void setUserId(User user){this.userId = user;}
+    public User getUser(){return this.user;}
+    public void setUser(User user){this.user = user;}
 
     public Date getCreatedAt(){return this.createdAt;}
     public void setCreatedAt(Date created){this.createdAt = created;}

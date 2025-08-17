@@ -13,13 +13,13 @@ public class UserTag {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     //holds all the tags created in task feature
-    @OneToMany(mappedBy = "user_tag")
+    @OneToMany(mappedBy = "userTag")
     private List<TaskTag> allTaskTags;
     //holds all the tags created in quiz/study set feature
-    @OneToMany(mappedBy = "user_tag")
+    @OneToMany(mappedBy = "userTag")
     private List<StudyTag> allStudyTags;
     //holds all the tags created in note-taking feature
-    @OneToMany(mappedBy = "user_tag")
+    @OneToMany(mappedBy = "userTag")
     private List<NoteTag> allNoteTags;
     @Transient
     private List<Object> allTags;

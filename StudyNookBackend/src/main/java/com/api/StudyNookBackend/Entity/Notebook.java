@@ -21,7 +21,7 @@ public class Notebook {
     //bc many notebooks belong to one user
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User userId;
+    private User user;
     private String title;
     private Date createdAt;
     private Date updatedAt;
@@ -39,8 +39,8 @@ public class Notebook {
     public List<Note> getAllNotes(){return this.allNotes;}
     public void setAllNotes(List<Note> notes){this.allNotes = notes;}
 
-    public User getUserId(){return this.userId;}
-    public void setUserId(User userId){this.userId = userId;}
+    public User getUser(){return this.user;}
+    public void setUser(User user){this.user = user;}
 
     public String getTitle(){return this.title;}
     public void setTitle(String title){this.title = title;}

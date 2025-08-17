@@ -18,7 +18,7 @@ public class User {
     //bc one user will have one global tag container
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_tag_id", referencedColumnName = "id")
-    private UserTag userTagId;
+    private UserTag userTag;
     //bc one user will have many classes, calendar events, flashcards, boards, study sets, notebooks, notes, and tasks
     @OneToMany(mappedBy = "user")
     private List<UserClass> allUserClasses;
@@ -67,8 +67,8 @@ public class User {
     public Timestamp getUpdatedAt(){return this.updatedAt;}
     public void setUpdatedAt(Timestamp updatedAt){this.updatedAt = updatedAt;}
 
-    public UserTag getUserTagId(){return this.userTagId;}
-    public void setUserTagId(UserTag tags){this.userTagId = tags;}
+    public UserTag getUserTag(){return this.userTag;}
+    public void setUserTag(UserTag tags){this.userTag = tags;}
 
     public List<UserClass> getAllUserClasses(){return this.allUserClasses;}
     public void setAllUserClasses(List<UserClass> classes){this.allUserClasses = classes;}

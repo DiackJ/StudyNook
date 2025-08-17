@@ -18,12 +18,12 @@ public class StudySet {
     //bc one user will have many study sets
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User userId;
+    private User user;
     //bc one study set will have many flashcards
-    @OneToMany(mappedBy = "study_set")
+    @OneToMany(mappedBy = "studySet")
     private List<Flashcard> allFlashcards;
     //bc one study set will have many study tags
-    @OneToMany(mappedBy = "study_set")
+    @OneToMany(mappedBy = "studySet")
     private List<StudyTag> allStudyTags;
     private String title;
     private Date createdAt;
@@ -41,8 +41,8 @@ public class StudySet {
     public UserClass getUserClass(){return this.userClass;}
     public void setUserClass(UserClass userClass){this.userClass = userClass;}
 
-    public User getUserId(){return this.userId;}
-    public void setUserId(User user){this.userId = user;}
+    public User getUser(){return this.user;}
+    public void setUser(User user){this.user = user;}
 
     public List<StudyTag> getAllStudyTags() {return allStudyTags;}
     public void setAllStudyTags(List<StudyTag> studyTags){this.allStudyTags = studyTags;}

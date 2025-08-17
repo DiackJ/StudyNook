@@ -14,13 +14,13 @@ public class UserClass {
     //bc many classes belong to one user
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User userId;
+    private User user;
     //bc one class will have many boards, study sets and notebooks
-    @OneToMany(mappedBy = "user_class")
+    @OneToMany(mappedBy = "userClass")
     private List<Board> allBoards;
-    @OneToMany(mappedBy = "user_class")
+    @OneToMany(mappedBy = "userClass")
     private List<StudySet> allStudySets;
-    @OneToMany(mappedBy = "user_class")
+    @OneToMany(mappedBy = "userClass")
     private List<Notebook> allNotebooks;
     private String name;
     private Timestamp createdAt;
@@ -35,8 +35,8 @@ public class UserClass {
     public long getId(){return this.id;}
     public void setId(long id){this.id = id;}
 
-    public User getUserId(){return this.userId;}
-    public void setUserId(User user){this.userId = user;}
+    public User getUser(){return this.user;}
+    public void setUser(User user){this.user = user;}
 
     public List<Board> getAllBoards(){return this.allBoards;}
     public void setAllBoards(List<Board> boards){this.allBoards = boards;}

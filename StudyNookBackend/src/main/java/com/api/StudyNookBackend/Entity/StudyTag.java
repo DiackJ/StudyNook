@@ -10,11 +10,11 @@ public class StudyTag {
     //bc many study tags belong to one study set
     @ManyToOne
     @JoinColumn(name = "study_set_id")
-    private StudySet studySetId;
+    private StudySet studySet;
     //bc many study tags belong to one global user tag holder
     @ManyToOne
     @JoinColumn(name = "user_tag_id")
-    private UserTag userTagId;
+    private UserTag userTag;
     private String name;
 
     public StudyTag(){}
@@ -22,11 +22,11 @@ public class StudyTag {
     public long getId(){return this.id;}
     public void setId(long id){this.id = id;}
 
-    public StudySet getStudySetId(){return this.studySetId;}
-    public void setStudySetId(StudySet studySetId){this.studySetId = studySetId;}
+    public StudySet getStudySetId(){return this.studySet;}
+    public void setStudySetId(StudySet studySetId){this.studySet = studySetId;}
 
-    public UserTag getUserTagId(){return this.userTagId;}
-    public void setUserTagId(UserTag userTagId){this.userTagId = userTagId;}
+    public UserTag getUserTag(){return this.userTag;}
+    public void setUserTag(UserTag userTag){this.userTag = userTag;}
 
     public String getName(){return this.name;}
     public void setName(String name){this.name = name;}

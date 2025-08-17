@@ -14,11 +14,11 @@ public class Note {
     //bc many notes may belong to one notebook
     @ManyToOne
     @JoinColumn(name = "notebook_id")
-    private Notebook notebookId;
+    private Notebook notebook;
     //bc many notes belong to one user
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User userId;
+    private User user;
     //bc one note may have many note tags
     @OneToMany(mappedBy = "note")
     private List<NoteTag> allNoteTags;
@@ -35,11 +35,11 @@ public class Note {
     public long getId(){return this.id;}
     public void setId(long id){this.id = id;}
 
-    public Notebook getNotebookId(){return this.notebookId;}
-    public void setNotebookId(Notebook notebookId){this.notebookId = notebookId;}
+    public Notebook getNotebook(){return this.notebook;}
+    public void setNotebook(Notebook notebook){this.notebook = notebook;}
 
-    public User getUserId(){return this.userId;}
-    public void setUserId(User user){this.userId = user;}
+    public User getUser(){return this.user;}
+    public void setUser(User user){this.user = user;}
 
     public List<NoteTag> getAllNoteTags(){return this.allNoteTags;}
     public void setAllNoteTags(List<NoteTag> noteTags){this.allNoteTags = noteTags;}
