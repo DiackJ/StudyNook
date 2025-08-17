@@ -27,8 +27,8 @@ public class Task {
     @OneToMany(mappedBy = "task")
     private List<TaskTag> allTaskTags;
     private String title;
-    private String optionalDescription;
-    private Date optionalDueDate;
+    private String description;
+    private Date dueDate;
     private Date createdAt;
     private String status;
 
@@ -52,11 +52,11 @@ public class Task {
     public Date getCreatedAt(){return this.createdAt;}
     public void setCreatedAt(Date created){this.createdAt = created;}
 
-    public Date getOptionalDueDate(){return this.optionalDueDate;}
-    public void setOptionalDueDate(Date date){this.optionalDueDate = date;}
+    public Date getDueDate(){return this.dueDate;}
+    public void setDueDate(Date date){this.dueDate = date;}
 
-    public String getOptionalDescription(){return this.optionalDescription;}
-    public void setOptionalDescription(String description){this.optionalDescription = description;}
+    public String getDescription(){return this.description;}
+    public void setDescription(String description){this.description = description;}
 
     public String getTitle(){return this.title;}
     public void setTitle(String title){this.title = title;}

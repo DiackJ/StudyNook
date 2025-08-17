@@ -15,7 +15,7 @@ public class CalendarEvent {
     private User userId;
     private String title;
     private Date date;
-    private String optionalDescription;
+    private String description;
 
     public CalendarEvent(){}
 
@@ -31,6 +31,6 @@ public class CalendarEvent {
     public Date getDate(){return this.date;}
     public void setDate(Date date){this.date = date;}
 
-    public String getOptionalDescription(){return this.optionalDescription;}
-    public void setOptionalDescription(String description){this.optionalDescription = description;}
+    public String getDescription(){return this.description;}
+    public void setDescription(String description){this.description = description;}
 }

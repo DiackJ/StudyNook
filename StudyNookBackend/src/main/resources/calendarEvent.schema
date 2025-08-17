@@ -3,6 +3,6 @@ id BIGINT AUTO_INCREMENT NOT NULL PRIMARY KEY,
 user_id BIGINT,
 title VARCHAR(50),
 date DATE,
-optional_description TEXT,
+description TEXT,
 FOREIGN KEY (user_id) REFERENCES user (id) ON DELETE CASCADE
 );
