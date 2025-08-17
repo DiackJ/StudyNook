@@ -17,8 +17,8 @@ public class Task {
     private Board boardId;
     //bc one category will have many tasks
     @ManyToOne
-    @JoinColumn(name = "status_category")
-    private Category statusCategory;
+    @JoinColumn(name = "category_id")
+    private Category categoryId;
     //bc one user will have many tasks
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -30,7 +30,7 @@ public class Task {
     private String description;
     private Date dueDate;
     private Date createdAt;
-    private String status;
+    private Date updatedAt;
 
 //no args constructor to create objects but need to define list type.
     public Task(){
@@ -43,8 +43,8 @@ public class Task {
     public Board getBoardId(){return this.boardId;}
     public void setBoardId(Board boardId){this.boardId = boardId;}
 
-    public Category getStatusCategory(){return this.statusCategory;}
-    public void setStatusCategory(Category category){this.statusCategory = category;}
+    public Category getCategoryId(){return this.categoryId;}
+    public void setCategoryId(Category categoryId){this.categoryId = categoryId;}
 
     public User getUserId(){return this.userId;}
     public void setUserId(User user){this.userId = user;}
@@ -64,6 +64,6 @@ public class Task {
     public List<TaskTag> getAllTaskTags(){return this.allTaskTags;}
     public void setAllTaskTags(List<TaskTag> taskTags){this.allTaskTags = taskTags;}
 
-    public String getStatus(){return this.status;}
-    public void setStatus(String status){this.status = status;}
+    public Date getUpdatedAt(){return this.updatedAt;}
+    public void setUpdatedAt(Date date){this.updatedAt = date;}
 }
