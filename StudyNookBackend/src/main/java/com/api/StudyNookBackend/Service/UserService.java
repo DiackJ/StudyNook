@@ -25,10 +25,11 @@ public class UserService {
 
     //create a new user
     public User createNewUser(UserDTO userdto){
-//        User existingUser = userRepository.findByEmail(userdto.getEmail()).orElseThrow(IllegalArgumentException::new);
-//        if(userRepository.count() >= 1 && existingUser != null){
-//            throw new RuntimeException("user already exists");
-//        }
+        User existingUser = userRepository.findByEmail(userdto.getEmail()).orElse(null);
+        if (userRepository.count() > 0 && existingUser != null) {
+            throw new RuntimeException("user already exists");
+        }
+
         User user = new User();
         user.setEmail(userdto.getEmail());
         user.setPassword(encoder.encode(userdto.getPassword()));
