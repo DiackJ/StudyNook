@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import com.api.StudyNookBackend.Entity.UserClass;
 
 @Repository
-public interface ClassRepository extends JpaRepository<UserClass, Long> {
+public interface UserClassRepository extends JpaRepository<UserClass, Long> {
 }

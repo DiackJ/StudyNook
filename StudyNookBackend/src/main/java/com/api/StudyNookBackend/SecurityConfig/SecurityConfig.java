@@ -28,16 +28,18 @@ import java.util.List;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-    @Autowired
     private AuthFilter authFilter;
-    @Autowired
     private UserDetailsService userDetailsService;
 
-    public SecurityConfig(){}
+    @Autowired
+    public SecurityConfig(AuthFilter authFilter, UserDetailsService userDetailsService){
+        this.authFilter = authFilter;
+        this.userDetailsService = userDetailsService;
+    }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
-        return http
+        http
                 .cors(Customizer.withDefaults()) //cors config
                 .csrf(c -> c.disable())
                 .formLogin(f -> f.disable())
@@ -47,8 +49,8 @@ public class SecurityConfig {
                 )
                 .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) //stateless api
                 .authenticationProvider((authenticationProvider())) //custom auth provider
-                .addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class) //have spring user OUR filter before default
-                .build();
+                .addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class); //have spring user OUR filter before default
+        return http.build();
     }
 
     //password encoder to hash and un-hash passwords
@@ -79,7 +81,7 @@ public class SecurityConfig {
         config.setAllowCredentials(true); //allow cookies
         config.setAllowedHeaders(List.of("*")); //allow all kinds of header
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS")); //methods for request (options required for fetch())
-       // config.setAllowedOrigins(List.of("http://localhost: xxxx")); //frontend request origin (add frontend host)
+        config.setAllowedOrigins(List.of("http://localhost:5173")); //frontend request origin (add frontend host)
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config); //applies above config to all endpoints
         return source;

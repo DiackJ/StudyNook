@@ -33,6 +33,7 @@ public class AuthFilter extends OncePerRequestFilter {
         String path = req.getServletPath();
         if(path.startsWith("/auth/")){
             filterChain.doFilter(req, res);
+            return;
         }
 
         String email = null;
@@ -41,7 +42,7 @@ public class AuthFilter extends OncePerRequestFilter {
         //extract the token and email from the cookies of the request
         if(req.getCookies() != null){
             for(Cookie cookie : req.getCookies()){
-                if(cookie.getName().equals("jwt")){
+                if(cookie.getName().equals("access_token")){
                     token = cookie.getValue();
                     email = jwtUtil.extractEmail(token);
                 }
@@ -52,7 +53,7 @@ public class AuthFilter extends OncePerRequestFilter {
         if(email != null && SecurityContextHolder.getContext().getAuthentication() == null){
             UserDetails user = userDetailsService.loadUserByUsername(email);
             //validate token and authenticate the user
-            if(jwtUtil.isTokenValid(token, user)){
+            if(jwtUtil.isTokenValid(token, user)) {
                 UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
                         user,
                         null,
@@ -64,8 +65,8 @@ public class AuthFilter extends OncePerRequestFilter {
 
                 System.out.println("Auth token: " + authenticationToken);
             }
-            //move on to the next filter/stop running filter
-            filterChain.doFilter(req, res);
         }
+        //move on to the next filter/stop running filter
+        filterChain.doFilter(req, res);
     }
 }

@@ -82,7 +82,7 @@ public class JwtUtil {
         Cookie[] cookies = req.getCookies(); //return all cookies from the current request
         if (cookies != null) { //if cookies exist
             for (Cookie cookie : cookies) { //loop through all cookies
-                if ("jwt".equals(cookie.getName())) { //look for the one that matches "jwt"
+                if ("access_token".equals(cookie.getName())) { //look for the one that matches "jwt"
                     return cookie.getValue(); //extract its payload
                 }
             }
