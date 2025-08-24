@@ -8,15 +8,13 @@ import com.api.StudyNookBackend.Service.UserService;
 import com.api.StudyNookBackend.Util.JwtUtil;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.Duration;
-import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -51,6 +49,41 @@ public class AuthController {
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)
+                .body(user);
+    }
+
+    @PostMapping("/signin")
+    public ResponseEntity<User> loginUser(@RequestBody UserDTO dto, HttpServletResponse httpServletResponse) {
+        String genericErrorMessage = "Invalid email or password";
+
+        Matcher matcher = pattern.matcher((dto.getEmail()));
+        if (!matcher.matches()) {
+            throw new RuntimeException("Invalid email");
+        }
+
+        if (dto.getPassword().length() < 6) {
+            throw new RuntimeException("password length needs to be minimum 6 characters");
+        }
+
+        User user = userRepository.findByEmail(dto.getEmail()).orElse(null);
+
+        // if user doesn't exist with the provided email
+        if (user == null) {
+            throw new RuntimeException(genericErrorMessage);
+        }
+
+        // check if the credentials are valid
+        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(dto.getEmail(), dto.getPassword()));
+        if (!authentication.isAuthenticated()) {
+            throw new RuntimeException(genericErrorMessage);
+        }
+
+        // set access token to the cookie header
+        AccessTokenManager accessTokenManager = new AccessTokenManager(user, jwtUtil);
+        accessTokenManager.AddCookieToHeader(httpServletResponse);
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
                 .body(user);
     }
 

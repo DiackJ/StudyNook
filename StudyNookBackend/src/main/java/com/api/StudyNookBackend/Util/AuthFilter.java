@@ -31,7 +31,7 @@ public class AuthFilter extends OncePerRequestFilter {
         //logic to skip all auth points because logging in and signing up should be public
         //and without this step, sometimes the auth filter will block the request even if permitAll() == true
         String path = req.getServletPath();
-        if(path.startsWith("/auth/signup") || path.startsWith("/auth/login")){
+        if(path.startsWith("/auth/")){
             filterChain.doFilter(req, res);
         }
 
