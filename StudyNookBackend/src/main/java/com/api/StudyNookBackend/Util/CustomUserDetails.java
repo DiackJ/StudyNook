@@ -15,12 +15,11 @@ public class CustomUserDetails implements UserDetails {
     private String password;
     private long id;
 
-    public CustomUserDetails(User user){
+    public CustomUserDetails(User user) {
         this.username = user.getEmail();
         this.password = user.getPassword();
         this.id = user.getId();
     }
-
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -37,21 +36,27 @@ public class CustomUserDetails implements UserDetails {
         return username;
     }
 
-    public long getId(){
+    public long getId() {
         return id;
     }
 
     @Override
-    public boolean isAccountNonExpired(){return true;}
+    public boolean isAccountNonExpired() {
+        return true;
+    }
 
     @Override
-    public boolean isAccountNonLocked(){return true;}
+    public boolean isAccountNonLocked() {
+        return true;
+    }
 
-    /*
-     @Override
-     public boolean isCredentialsNonExpired(){}
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
 
-     @Override
-     public boolean isEnabled(){}
-     */
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 }
