@@ -4,6 +4,7 @@ import com.api.StudyNookBackend.DTO.UserDTO;
 import com.api.StudyNookBackend.Entity.User;
 import com.api.StudyNookBackend.Repository.UserRepository;
 import com.api.StudyNookBackend.Util.JwtUtil;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -36,6 +37,13 @@ public class UserService {
         user.setName(userdto.getName());
 
         return userRepository.save(user);
+    }
+//return user from session cookie
+    public User getUser(HttpServletRequest req){
+        String token = jwtUtil.extractTokenFromCookie(req);
+        String email = jwtUtil.extractEmail(token);
+
+       return userRepository.findByEmail(email).orElse(null);
     }
 
 }
