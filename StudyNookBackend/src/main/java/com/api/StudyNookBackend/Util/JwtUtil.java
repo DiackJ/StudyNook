@@ -21,21 +21,20 @@ public class JwtUtil {
     @Value("${JWT_SECRET}")
     private String key;
 
-/*
+
     //create token
-    public String createToken(Long userId, String email){
+    public String createToken(Long userId, String email) {
         return Jwts.builder()
                 .setSubject(String.valueOf(userId))
                 .claim("email", email)
-                .setIssuedAt()
-                .setExpiration()
+                .setIssuedAt(new Date())
+                .setExpiration(new Date(System.currentTimeMillis() + (1000 * 60 * 60 * 24 * 14))) // 14 days
                 .signWith(Keys.hmacShaKeyFor(key.getBytes(StandardCharset.UTF_8)), SignatureAlgorithm.HS256)
                 .compact();
     }
- */
 
     //extract the userId
-    public Long extractUserId(String token){
+    public Long extractUserId(String token) {
         Claims claims = Jwts.parser()
                 .setSigningKey(Keys.hmacShaKeyFor(key.getBytes(StandardCharsets.UTF_8)))
                 .build()
@@ -46,20 +45,19 @@ public class JwtUtil {
     }
 
     //extract expiration
-    /*
-    public Date extractExpiration(String token){
+
+    public Date extractExpiration(String token) {
         Claims claims = Jwts.parser()
-                .setSigningKey()
+                .setSigningKey(Keys.hmacShaKeyFor(key.getBytes(StandardCharsets.UTF_8)))
                 .build()
-                .parseClaimsJws()
+                .parseClaimsJws(token)
                 .getPayload();
 
         return claims.getExpiration();
     }
-     */
 
     //extract user's email
-    public String extractEmail(String token){
+    public String extractEmail(String token) {
         Claims claims = Jwts.parser()
                 .setSigningKey(Keys.hmacShaKeyFor(key.getBytes(StandardCharsets.UTF_8)))
                 .build()
@@ -68,27 +66,23 @@ public class JwtUtil {
         return claims.get("email", String.class);
     }
 
-    /* **uncomment once expiration function is made **
     //check token expiration
     public boolean isTokenExpired(String token){
-       return extractExpiration(token).isBefore(new Date());
+       return extractExpiration(token).before(new Date());
     }
-     */
 
-    /* **uncomment once extract expiration function is done **
     //validate token
     public boolean isTokenValid(String token, UserDetails userDetails){
         String email = extractEmail(token);
-        return (!isTokenExpired(token) && email == userDetails.getUsername());
+        return (!isTokenExpired(token) && email.equals(userDetails.getUsername()));
     }
-    */
 
     //extract the token from the cookie header
-    public String extractTokenFromCookie(HttpServletRequest req){
+    public String extractTokenFromCookie(HttpServletRequest req) {
         Cookie[] cookies = req.getCookies(); //return all cookies from the current request
-        if(cookies != null){ //if cookies exist
-            for(Cookie cookie : cookies){ //loop through all cookies
-                if("jwt".equals(cookie.getName())){ //look for the one that matches "jwt"
+        if (cookies != null) { //if cookies exist
+            for (Cookie cookie : cookies) { //loop through all cookies
+                if ("jwt".equals(cookie.getName())) { //look for the one that matches "jwt"
                     return cookie.getValue(); //extract its payload
                 }
             }

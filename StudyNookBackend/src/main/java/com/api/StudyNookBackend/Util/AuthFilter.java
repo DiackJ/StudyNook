@@ -47,7 +47,7 @@ public class AuthFilter extends OncePerRequestFilter {
                 }
             }
         }
-        /* **uncomment when jwt isValidToken function is ready to use **
+
         //check if the user is already in our app context, if not add them
         if(email != null && SecurityContextHolder.getContext().getAuthentication() == null){
             UserDetails user = userDetailsService.loadUserByUsername(email);
@@ -67,6 +67,5 @@ public class AuthFilter extends OncePerRequestFilter {
             //move on to the next filter/stop running filter
             filterChain.doFilter(req, res);
         }
-         */
     }
 }
