@@ -9,6 +9,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 //handles all the functionality for the classes
 @Service
 public class UserClassService {
@@ -30,4 +32,8 @@ public class UserClassService {
 
         return userClassRepository.save(userClass);
     }
+
+//    public List<UserClass> getUserClasses(HttpServletRequest req){
+//
+//    }
 }

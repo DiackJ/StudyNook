@@ -14,13 +14,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 //handles endpoint logic for classes
 @RestController
-@RequestMapping("/class")
 public class UserClassController {
     @Autowired
     private UserClassService userClassService;
 
-    @PostMapping("/create-class")
+    @PostMapping("/classes")
     public ResponseEntity<UserClass> createUserClass(@RequestBody UserClassDTO dto, HttpServletRequest req){
+        if(dto.getName() == null || dto.getName().isEmpty()){
+            throw new RuntimeException("please enter a name for your class");
+        }
         UserClass userClass = userClassService.addNewClass(dto, req);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
