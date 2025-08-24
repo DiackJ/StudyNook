@@ -30,7 +30,7 @@ public class UserClass {
     private LocalDateTime createdAt;
     @UpdateTimestamp
     private LocalDateTime updatedAt;
-    private String status;
+    private boolean isActive;
 
     public UserClass(){
         this.allBoards = new ArrayList<>();
@@ -62,6 +62,6 @@ public class UserClass {
     public LocalDateTime getUpdatedAt(){return this.updatedAt;}
     public void setUpdatedAt(LocalDateTime date){this.updatedAt = date;}
 
-    public String getStatus(){return this.status;}
-    public void setStatus(String status){this.status = status;}
+    public boolean getIsActive(){return this.isActive;}
+    public void setIsActive(boolean status){this.isActive = status;}
 }
