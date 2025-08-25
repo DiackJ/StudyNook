@@ -45,7 +45,7 @@ public class AuthController {
         User user = userService.createNewUser(dto);
 
         AccessTokenManager accessTokenManager = new AccessTokenManager(user, jwtUtil);
-        accessTokenManager.AddCookieToHeader(httpServletResponse);
+        accessTokenManager.addCookieToHeader(httpServletResponse);
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)
@@ -80,11 +80,21 @@ public class AuthController {
 
         // set access token to the cookie header
         AccessTokenManager accessTokenManager = new AccessTokenManager(user, jwtUtil);
-        accessTokenManager.AddCookieToHeader(httpServletResponse);
+        accessTokenManager.addCookieToHeader(httpServletResponse);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(user);
+    }
+
+    @PostMapping("/signout")
+    ResponseEntity<String> logoutUser(HttpServletResponse httpServletResponse) {
+        // destroy access token
+        AccessTokenManager accessTokenManager = new AccessTokenManager(null, jwtUtil);
+        accessTokenManager.destroyCookie(httpServletResponse);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body("Sign out successfully");
     }
 
     @ExceptionHandler(RuntimeException.class)
