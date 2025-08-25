@@ -25,5 +25,5 @@ public class UserClassDTO {
     public LocalDateTime getUpdatedAt(){return this.updatedAt;}
     public void setUpdatedAt(LocalDateTime date){this.updatedAt = date;}
     public boolean getIsActive(){return this.isActive;}
-    public void setActive(boolean active){this.isActive = active;}
+    public void setIsActive(boolean active){this.isActive = active;}
 }
