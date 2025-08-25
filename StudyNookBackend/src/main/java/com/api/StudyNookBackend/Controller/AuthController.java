@@ -1,6 +1,7 @@
 package com.api.StudyNookBackend.Controller;
 
 import com.api.StudyNookBackend.DTO.UserDTO;
+import com.api.StudyNookBackend.DTO.UserResponseDTO;
 import com.api.StudyNookBackend.Entity.User;
 import com.api.StudyNookBackend.Manager.AccessTokenManager;
 import com.api.StudyNookBackend.Repository.UserRepository;
@@ -34,7 +35,7 @@ public class AuthController {
     private AuthenticationManager authenticationManager;
 
     @PostMapping("/signup")
-    public ResponseEntity<User> createNewUser(@RequestBody UserDTO dto, HttpServletResponse httpServletResponse) {
+    public ResponseEntity<UserResponseDTO> createNewUser(@RequestBody UserDTO dto, HttpServletResponse httpServletResponse) {
         Matcher matcher = pattern.matcher(dto.getEmail());
         if (!matcher.matches()) {
             throw new RuntimeException("invalid email");
@@ -47,13 +48,21 @@ public class AuthController {
         AccessTokenManager accessTokenManager = new AccessTokenManager(user, jwtUtil);
         accessTokenManager.AddCookieToHeader(httpServletResponse);
 
+        UserResponseDTO userdata = new UserResponseDTO();
+
+        userdata.setCreatedAt(user.getCreatedAt());
+        userdata.setId(user.getId());
+        userdata.setEmail(user.getEmail());
+        userdata.setUpdatedAt(user.getUpdatedAt());
+        userdata.setName(user.getName());
+
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .body(user);
+                .body(userdata);
     }
 
     @PostMapping("/signin")
-    public ResponseEntity<User> loginUser(@RequestBody UserDTO dto, HttpServletResponse httpServletResponse) {
+    public ResponseEntity<UserResponseDTO> loginUser(@RequestBody UserDTO dto, HttpServletResponse httpServletResponse) {
         String genericErrorMessage = "Invalid email or password";
 
         Matcher matcher = pattern.matcher((dto.getEmail()));
@@ -82,9 +91,17 @@ public class AuthController {
         AccessTokenManager accessTokenManager = new AccessTokenManager(user, jwtUtil);
         accessTokenManager.AddCookieToHeader(httpServletResponse);
 
+        UserResponseDTO userdata = new UserResponseDTO();
+
+        userdata.setCreatedAt(user.getCreatedAt());
+        userdata.setId(user.getId());
+        userdata.setEmail(user.getEmail());
+        userdata.setUpdatedAt(user.getUpdatedAt());
+        userdata.setName(user.getName());
+
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(user);
+                .body(userdata);
     }
 
     @ExceptionHandler(RuntimeException.class)

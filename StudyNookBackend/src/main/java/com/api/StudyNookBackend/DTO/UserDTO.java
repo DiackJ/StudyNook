@@ -1,7 +1,5 @@
 package com.api.StudyNookBackend.DTO;
 
-import java.util.Date;
-
 public class UserDTO {
     private String name;
     private String email;
